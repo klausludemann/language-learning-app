@@ -1,7 +1,10 @@
-name: Deploy to Firebase Hosting
+name: Build & Deploy
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -29,6 +32,7 @@ jobs:
         run: npm run build
 
       - name: Write service-account file
+        if: github.event_name == 'push'
         env:
           SA_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
@@ -36,4 +40,5 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
 
       - name: Deploy hosting
+        if: github.event_name == 'push'
         run: npx -y firebase-tools deploy --only hosting --project ${{ secrets.VITE_FIREBASE_PROJECT_ID }} --non-interactive
