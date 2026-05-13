@@ -100,11 +100,16 @@ kannst – ohne lokale Entwicklungsumgebung.
 1. Auf dem iPad in Safari **claude.ai/code** öffnen
 2. Dieses Repository auswählen
 3. Claude einen Wunsch nennen (siehe Prompts unten)
-4. Claude editiert, committet und pusht (typischerweise via Pull Request
-   gegen `main`) – die GitHub Action baut & deployed automatisch, sobald
-   Änderungen auf `main` landen
-5. Nach ca. 1–2 Minuten ist die Änderung in der installierten PWA sichtbar
-   (ggf. Tab-Reload)
+4. Claude legt einen Branch an, macht die Änderung und öffnet einen
+   **Pull Request gegen `main`**.
+5. Direkt am PR läuft ein **Build-Check** der GitHub Action (kein
+   Deploy). Claude soll den PR überwachen – wenn der Build fehlschlägt,
+   bitte Claude um die Korrektur (oder lass Claude auto-fixen).
+6. Sobald der Build grün ist: PR auf GitHub mergen
+   („Merge pull request" → „Confirm merge").
+7. Der Merge auf `main` triggert das eigentliche Deploy. Nach ca.
+   1–2 Minuten ist die Änderung in der installierten PWA sichtbar
+   (ggf. Tab-Reload).
 
 ### Beispiel-Prompts für unterwegs
 
@@ -146,9 +151,13 @@ kannst – ohne lokale Entwicklungsumgebung.
 - **Sei spezifisch**: Thema (`restaurant`, `camping` …), Anzahl, Kontext
 - **Lass dir Vorschläge geben**, bevor Claude schreibt: „Schlag mir 20
   Vokabeln vor, ich wähle aus"
-- **Fehler-Hinweis**: Wenn die App nach einer Änderung weiß bleibt, sag
-  Claude: „Der Build ist fehlgeschlagen, schau in die GitHub Actions und
-  korrigiere den Fehler"
+- **PR überwachen lassen**: Direkt nachdem Claude den PR geöffnet hat,
+  sag: „Beobachte den PR und behebe Build-Fehler automatisch." Claude
+  bekommt dann die GitHub-Action-Ergebnisse live ins Chat und kann
+  Fehler ohne weitere Nachfrage korrigieren.
+- **Fehler-Hinweis**: Wenn die App nach dem Merge weiß bleibt, sag
+  Claude: „Der Deploy ist fehlgeschlagen, schau in die GitHub Actions
+  und korrigiere den Fehler"
 - **PWA neu laden**: Auf dem iPad die App komplett schließen (App-Switcher,
   hochwischen) und neu öffnen, damit der neue Service Worker greift
 
