@@ -81,6 +81,68 @@ Alle Inhalte liegen als Daten unter `src/data/`:
 
 Neue Vokabeln einfach in die Liste eintragen (eindeutige `id` vergeben).
 
+## 📱 Unterwegs vom iPad anpassen
+
+Die App ist so eingerichtet, dass du sie auch im Urlaub vom iPad aus erweitern
+kannst – ohne lokale Entwicklungsumgebung.
+
+### Workflow
+
+1. Auf dem iPad in Safari **claude.ai/code** öffnen
+2. Dieses Repository auswählen
+3. Claude einen Wunsch nennen (siehe Prompts unten)
+4. Claude editiert, committet und pusht – die GitHub Action baut & deployed
+   automatisch (sowohl auf `main` als auch auf
+   `claude/spanish-learning-app-TUsmC`)
+5. Nach ca. 1–2 Minuten ist die Änderung in der installierten PWA sichtbar
+   (ggf. Tab-Reload)
+
+### Beispiel-Prompts für unterwegs
+
+**Vokabeln ergänzen**
+
+> „Füge 10 neue Vokabeln zum Thema `restaurant` hinzu, die in Tapas-Bars
+> nützlich sind. Mit Aussprache-Hinweisen wenn sinnvoll."
+
+> „Im Thema `wandern` fehlen mir Wörter zu Wetter und Tieren. Ergänze 8
+> Vokabeln passend dazu."
+
+**Neues Thema anlegen**
+
+> „Lege ein neues Thema `strand` an (Emoji 🏖️) mit 15 typischen
+> Strand-Vokabeln und einem Mini-Dialog (Sonnenliege mieten)."
+
+**Aussprache-Probleme klären**
+
+> „Erkläre mir in der Grammatik-Lektion `aussprache`, warum man in Andalusien
+> manche Endungen verschluckt. Maximal 3 Sätze, mit 2 Beispielen."
+
+**Fehler korrigieren**
+
+> „In `vocabulary.ts` ist `b08` falsch übersetzt. Es sollte `Estoy bien,
+> gracias` heißen, nicht `Soy bien, gracias`."
+
+**Dialog für eine konkrete Situation**
+
+> „Bau einen Mini-Dialog für das Thema `radfahren`: ich frage am Berg nach
+> einer Wasserquelle, ein Einheimischer erklärt den Weg."
+
+**Lernziel & Schwerpunkt setzen**
+
+> „Markiere alle Vokabeln aus `restaurant` und `verkehr` als Priorität für die
+> nächsten 3 Tage, damit sie zuerst geübt werden."
+
+### Tipps
+
+- **Sei spezifisch**: Thema (`restaurant`, `camping` …), Anzahl, Kontext
+- **Lass dir Vorschläge geben**, bevor Claude schreibt: „Schlag mir 20
+  Vokabeln vor, ich wähle aus"
+- **Fehler-Hinweis**: Wenn die App nach einer Änderung weiß bleibt, sag
+  Claude: „Der Build ist fehlgeschlagen, schau in die GitHub Actions und
+  korrigiere den Fehler"
+- **PWA neu laden**: Auf dem iPad die App komplett schließen (App-Switcher,
+  hochwischen) und neu öffnen, damit der neue Service Worker greift
+
 ## Architektur
 
 - **React + Vite + TypeScript** – Build-Tools
