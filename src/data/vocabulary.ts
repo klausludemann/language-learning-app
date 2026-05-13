@@ -49,6 +49,9 @@ export const VOCABULARY: VocabItem[] = [
   { id: "r13", topic: "restaurant", de: "Kann ich mit Karte zahlen?", es: "¿Puedo pagar con tarjeta?" },
   { id: "r14", topic: "restaurant", de: "Trinkgeld", es: "la propina" },
   { id: "r15", topic: "restaurant", de: "scharf", es: "picante" },
+  { id: "r16", topic: "restaurant", de: "Können wir draußen sitzen?", es: "¿Podemos sentarnos fuera?" },
+  { id: "r17", topic: "restaurant", de: "die Tagesempfehlung", es: "el plato del día" },
+  { id: "r18", topic: "restaurant", de: "ohne Eis, bitte", es: "sin hielo, por favor" },
 
   // Hotel
   { id: "h01", topic: "hotel", de: "Ich habe eine Reservierung.", es: "Tengo una reserva." },
@@ -63,6 +66,9 @@ export const VOCABULARY: VocabItem[] = [
   { id: "h10", topic: "hotel", de: "ein Handtuch, bitte", es: "una toalla, por favor" },
   { id: "h11", topic: "hotel", de: "Gibt es einen Aufzug?", es: "¿Hay ascensor?" },
   { id: "h12", topic: "hotel", de: "die Dusche", es: "la ducha" },
+  { id: "h13", topic: "hotel", de: "Gibt es ein ruhiges Zimmer?", es: "¿Hay una habitación tranquila?" },
+  { id: "h14", topic: "hotel", de: "Können Sie mein Gepäck aufbewahren?", es: "¿Puede guardar mi equipaje?" },
+  { id: "h15", topic: "hotel", de: "die Decke", es: "la manta" },
 
   // Verkehr
   { id: "v01", topic: "verkehr", de: "Wo ist …?", es: "¿Dónde está …?" },
@@ -77,6 +83,9 @@ export const VOCABULARY: VocabItem[] = [
   { id: "v10", topic: "verkehr", de: "die Karte (Stadtplan)", es: "el mapa", hint: "m" },
   { id: "v11", topic: "verkehr", de: "der Flughafen", es: "el aeropuerto" },
   { id: "v12", topic: "verkehr", de: "abfahren / ankommen", es: "salir / llegar" },
+  { id: "v13", topic: "verkehr", de: "Welcher Bus fährt ins Zentrum?", es: "¿Qué autobús va al centro?" },
+  { id: "v14", topic: "verkehr", de: "die nächste Haltestelle", es: "la próxima parada" },
+  { id: "v15", topic: "verkehr", de: "Können Sie mich hier absetzen?", es: "¿Puede dejarme aquí?" },
 
   // Camping
   { id: "c01", topic: "camping", de: "der Campingplatz", es: "el camping" },
@@ -91,6 +100,9 @@ export const VOCABULARY: VocabItem[] = [
   { id: "c10", topic: "camping", de: "Mücken / Mückenspray", es: "mosquitos / repelente" },
   { id: "c11", topic: "camping", de: "Kann ich hier zelten?", es: "¿Puedo acampar aquí?" },
   { id: "c12", topic: "camping", de: "Trinkwasser", es: "agua potable" },
+  { id: "c13", topic: "camping", de: "ein Stellplatz mit Schatten", es: "una parcela con sombra" },
+  { id: "c14", topic: "camping", de: "Wann ist die Rezeption geöffnet?", es: "¿Cuándo está abierta la recepción?" },
+  { id: "c15", topic: "camping", de: "Feuer machen ist verboten.", es: "Está prohibido hacer fuego." },
 
   // Wandern
   { id: "w01", topic: "wandern", de: "wandern", es: "hacer senderismo" },
@@ -105,6 +117,10 @@ export const VOCABULARY: VocabItem[] = [
   { id: "w10", topic: "wandern", de: "Vorsicht!", es: "¡Cuidado!" },
   { id: "w11", topic: "wandern", de: "die Wanderschuhe", es: "las botas de montaña" },
   { id: "w12", topic: "wandern", de: "der Rucksack", es: "la mochila" },
+  { id: "w13", topic: "wandern", de: "Wo beginnt der Weg?", es: "¿Dónde empieza el sendero?" },
+  { id: "w14", topic: "wandern", de: "Wie viele Höhenmeter?", es: "¿Cuántos metros de desnivel?" },
+  { id: "w15", topic: "wandern", de: "die Quelle", es: "la fuente" },
+  { id: "w16", topic: "wandern", de: "Achtung, Steinschlag!", es: "¡Atención, caída de piedras!" },
 
   // Radfahren
   { id: "f01", topic: "radfahren", de: "das Fahrrad", es: "la bicicleta" },
@@ -119,6 +135,10 @@ export const VOCABULARY: VocabItem[] = [
   { id: "f10", topic: "radfahren", de: "für einen Tag", es: "por un día" },
   { id: "f11", topic: "radfahren", de: "bergauf / bergab", es: "cuesta arriba / cuesta abajo" },
   { id: "f12", topic: "radfahren", de: "Wo gibt es Wasser?", es: "¿Dónde hay agua?" },
+  { id: "f13", topic: "radfahren", de: "Wo kann ich Luft pumpen?", es: "¿Dónde puedo inflar las ruedas?" },
+  { id: "f14", topic: "radfahren", de: "die Schaltung", es: "el cambio de marchas" },
+  { id: "f15", topic: "radfahren", de: "Gibt es viele Steigungen?", es: "¿Hay muchas subidas?" },
+  { id: "f16", topic: "radfahren", de: "Ist die Strecke asphaltiert?", es: "¿Está asfaltada la ruta?" },
 ];
 
 export const vocabByTopic = (topic: Topic): VocabItem[] =>
