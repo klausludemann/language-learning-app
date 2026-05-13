@@ -100,9 +100,9 @@ kannst – ohne lokale Entwicklungsumgebung.
 1. Auf dem iPad in Safari **claude.ai/code** öffnen
 2. Dieses Repository auswählen
 3. Claude einen Wunsch nennen (siehe Prompts unten)
-4. Claude editiert, committet und pusht – die GitHub Action baut & deployed
-   automatisch (sowohl auf `main` als auch auf
-   `claude/spanish-learning-app-TUsmC`)
+4. Claude editiert, committet und pusht (typischerweise via Pull Request
+   gegen `main`) – die GitHub Action baut & deployed automatisch, sobald
+   Änderungen auf `main` landen
 5. Nach ca. 1–2 Minuten ist die Änderung in der installierten PWA sichtbar
    (ggf. Tab-Reload)
 
