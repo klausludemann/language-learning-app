@@ -10,7 +10,10 @@ zwischen Geräten synchronisiert.
 ## Funktionen (MVP)
 
 - **Themen**: Begrüßung & Smalltalk, Restaurant, Hotel, Verkehr, Camping, Wandern, Radfahren
-- **Vokabel-Training** in drei Modi: Multiple-Choice, Tippen, Karteikarten
+- **Vokabel-Training** in vier Modi: Multiple-Choice, Tippen, **Sprechen**, Karteikarten
+- **Sprech-Modus**: Wort selbst aussprechen – die App nutzt die Web Speech
+  API (Mikrofon) und vergleicht das Gesprochene mit der erwarteten
+  Antwort (funktioniert in Safari iOS/macOS und Chrome)
 - **Mini-Dialoge** für realistische Situationen
 - **Grammatik-Lektionen** (auf Deutsch): Aussprache, Artikel, ser/estar, Präsens, Fragen
 - **Audio-Aussprache** via Browser-TTS (Web Speech API)

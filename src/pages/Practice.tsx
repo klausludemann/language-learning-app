@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { VOCABULARY } from "../data/vocabulary";
 import SpeakerButton from "../components/SpeakerButton";
@@ -7,7 +7,48 @@ import { dueCards } from "../lib/srs";
 import type { Rating } from "../lib/srs";
 import type { Topic, UserProgress, VocabItem } from "../types";
 
-type Mode = "flash" | "choice" | "type";
+type Mode = "flash" | "choice" | "type" | "speak";
+
+interface SpeechAlternative {
+  transcript: string;
+}
+interface SpeechResult {
+  length: number;
+  [index: number]: SpeechAlternative;
+}
+interface SpeechResultList {
+  length: number;
+  [index: number]: SpeechResult;
+}
+interface SpeechRecognitionEvent {
+  results: SpeechResultList;
+}
+interface SpeechRecognitionErrorEvent {
+  error: string;
+}
+interface SpeechRecognitionLike {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  maxAlternatives: number;
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
+  onend: (() => void) | null;
+}
+
+type SpeechRecognitionCtor = new () => SpeechRecognitionLike;
+
+const getSpeechRecognition = (): SpeechRecognitionCtor | null => {
+  if (typeof window === "undefined") return null;
+  const w = window as unknown as {
+    SpeechRecognition?: SpeechRecognitionCtor;
+    webkitSpeechRecognition?: SpeechRecognitionCtor;
+  };
+  return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
+};
 
 const shuffle = <T,>(arr: T[]): T[] => {
   const a = [...arr];
@@ -106,6 +147,7 @@ export default function Practice({
           <div className="flex gap-1">
             <ModeButton current={mode} value="choice" setter={setMode} label="Wahl" />
             <ModeButton current={mode} value="type" setter={setMode} label="Tippen" />
+            <ModeButton current={mode} value="speak" setter={setMode} label="Sprechen" />
             <ModeButton current={mode} value="flash" setter={setMode} label="Karte" />
           </div>
         </div>
@@ -149,6 +191,13 @@ export default function Practice({
             setTypedResult(ok ? "ok" : "no");
             setTimeout(() => handleRating(ok ? 2 : 0), 900);
           }}
+        />
+      )}
+
+      {mode === "speak" && (
+        <SpeakView
+          current={current}
+          onAnswer={(correct) => handleRating(correct ? 2 : 0)}
         />
       )}
     </div>
@@ -303,3 +352,151 @@ const TypeView = ({
     )}
   </div>
 );
+
+type SpeakState = "unsupported" | "idle" | "listening" | "result" | "no-speech" | "denied";
+
+const SpeakView = ({
+  current,
+  onAnswer,
+}: {
+  current: VocabItem;
+  onAnswer: (correct: boolean) => void;
+}) => {
+  const [state, setState] = useState<SpeakState>("idle");
+  const [transcript, setTranscript] = useState("");
+  const [matched, setMatched] = useState<boolean>(false);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+
+  useEffect(() => {
+    if (!getSpeechRecognition()) setState("unsupported");
+  }, []);
+
+  useEffect(() => {
+    setTranscript("");
+    setMatched(false);
+    setState((s) => (s === "unsupported" ? s : "idle"));
+    return () => {
+      recognitionRef.current?.abort();
+    };
+  }, [current.id]);
+
+  const start = () => {
+    const Ctor = getSpeechRecognition();
+    if (!Ctor) {
+      setState("unsupported");
+      return;
+    }
+    const r = new Ctor();
+    r.lang = "es-ES";
+    r.continuous = false;
+    r.interimResults = false;
+    r.maxAlternatives = 3;
+
+    r.onresult = (event) => {
+      const result = event.results[0];
+      const alts: string[] = [];
+      for (let i = 0; i < result.length; i++) {
+        alts.push(result[i].transcript);
+      }
+      const expected = normalize(current.es);
+      const ok = alts.some((a) => normalize(a) === expected);
+      setTranscript(alts[0] ?? "");
+      setMatched(ok);
+      setState("result");
+      setTimeout(() => onAnswer(ok), 1600);
+    };
+    r.onerror = (event) => {
+      if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+        setState("denied");
+      } else {
+        setState("no-speech");
+      }
+    };
+    r.onend = () => {
+      setState((s) => (s === "listening" ? "no-speech" : s));
+    };
+
+    recognitionRef.current = r;
+    setState("listening");
+    try {
+      r.start();
+    } catch {
+      setState("no-speech");
+    }
+  };
+
+  if (state === "unsupported") {
+    return (
+      <div className="card text-sm">
+        <div className="font-semibold mb-1">Spracherkennung nicht verfügbar</div>
+        <div className="text-zinc-500">
+          Dein Browser unterstützt die Web Speech API nicht. Auf iPhone/iPad
+          bitte Safari benutzen, am Mac/PC Chrome.
+        </div>
+      </div>
+    );
+  }
+
+  if (state === "denied") {
+    return (
+      <div className="card text-sm">
+        <div className="font-semibold mb-1">Mikrofon blockiert</div>
+        <div className="text-zinc-500">
+          Bitte erlaube den Mikrofon-Zugriff in den Browser-Einstellungen und
+          lade die Seite neu.
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {state === "idle" && (
+        <button className="btn-primary w-full" onClick={start}>
+          🎤 Auf Spanisch sprechen
+        </button>
+      )}
+
+      {state === "listening" && (
+        <div className="card text-center">
+          <div className="text-3xl animate-pulse">🎤</div>
+          <div className="text-sm text-zinc-500 mt-2">Hört zu… sprich jetzt</div>
+          <button
+            type="button"
+            onClick={() => recognitionRef.current?.stop()}
+            className="mt-3 text-xs text-zinc-500 underline"
+          >
+            Abbrechen
+          </button>
+        </div>
+      )}
+
+      {state === "no-speech" && (
+        <>
+          <div className="card text-sm text-zinc-500">
+            Nichts verstanden. Bitte erneut versuchen.
+          </div>
+          <button className="btn-primary w-full" onClick={start}>
+            🎤 Nochmal
+          </button>
+        </>
+      )}
+
+      {state === "result" && (
+        <div
+          className={`card ${
+            matched ? "ring-2 ring-emerald-500" : "ring-2 ring-rose-500"
+          }`}
+        >
+          <div className="text-xs text-zinc-500">Du hast gesagt</div>
+          <div className="text-lg">„{transcript}"</div>
+          <div className="text-xs text-zinc-500 mt-3">Richtig wäre</div>
+          <div className="flex items-center justify-between">
+            <div className="text-lg font-semibold">{current.es}</div>
+            <SpeakerButton text={current.es} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
