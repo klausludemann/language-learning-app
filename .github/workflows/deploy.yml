@@ -36,5 +36,5 @@ jobs:
           printf '%s' "$SA_JSON" > "$RUNNER_TEMP/sa.json"
           echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
 
-      - name: Deploy hosting + firestore rules
-        run: npx -y firebase-tools deploy --only hosting,firestore:rules --project ${{ secrets.VITE_FIREBASE_PROJECT_ID }} --non-interactive
+      - name: Deploy hosting
+        run: npx -y firebase-tools deploy --only hosting --project ${{ secrets.VITE_FIREBASE_PROJECT_ID }} --non-interactive

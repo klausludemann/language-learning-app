@@ -73,6 +73,13 @@ unter **Secrets and variables → Actions** folgende Secrets anlegen:
 - `FIREBASE_SERVICE_ACCOUNT` – JSON eines Service-Accounts mit Hosting-Admin-Rechten
   (Google Cloud Console → IAM → Service Accounts → JSON-Key erzeugen)
 
+Die GitHub Action deployed nur **Hosting** – passend zu den Hosting-Admin-Rechten
+des Service-Accounts. Die Firestore-Regeln aus `firestore.rules` werden einmalig
+manuell angewendet: entweder per `firebase deploy --only firestore:rules` (lokal,
+nach `firebase login`) oder über die Firebase Console → Firestore → „Regeln" →
+Inhalt von `firestore.rules` einfügen → veröffentlichen. Die Regeln ändern sich
+selten, daher reicht das einmalige Setzen.
+
 ## Inhalte erweitern
 
 Alle Inhalte liegen als Daten unter `src/data/`:
