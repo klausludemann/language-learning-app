@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/spanish-learning-app-TUsmC
   workflow_dispatch:
 
 jobs:
