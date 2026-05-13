@@ -5,6 +5,8 @@ Vokabeln, Mini-Dialoge und Grammatik-Erklärungen mit Audio-Aussprache.
 Fortschritt wird über Spaced Repetition gespeichert und (mit Google-Login)
 zwischen Geräten synchronisiert.
 
+**Live**: https://language-learning-app-22bea.web.app
+
 ## Funktionen (MVP)
 
 - **Themen**: Begrüßung & Smalltalk, Restaurant, Hotel, Verkehr, Camping, Wandern, Radfahren
