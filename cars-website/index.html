@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Three Greatest Cars Ever Made</title>
+<meta name="description" content="A case for the three greatest cars in the world: the Ferrari 250 GTO, the McLaren F1 and the Porsche 911 — with illustrations, specifications and video." />
+<style>
+  :root{
+    --bg:#08090c;
+    --bg-2:#0e1015;
+    --panel:#12151c;
+    --line:#232833;
+    --ink:#f2f4f8;
+    --ink-2:#a6adbb;
+    --ink-3:#6d7686;
+    --ferrari:#e8102d;
+    --mclaren:#ff7a1a;
+    --porsche:#8fb6d8;
+    --accent:var(--ferrari);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  img,svg{max-width:100%;display:block}
+  a{color:inherit}
+
+  .wrap{width:min(1140px,92vw);margin-inline:auto}
+
+  /* ---------- top bar ---------- */
+  header.bar{
+    position:sticky;top:0;z-index:60;
+    backdrop-filter:blur(14px);
+    background:rgba(8,9,12,.78);
+    border-bottom:1px solid var(--line);
+  }
+  .bar .wrap{display:flex;align-items:center;gap:1.5rem;height:60px}
+  .brand{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap;
+  }
+  .brand b{color:var(--ferrari);font-weight:700}
+  nav.bar-nav{margin-left:auto;display:flex;gap:.35rem;flex-wrap:wrap}
+  nav.bar-nav a{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-2);text-decoration:none;padding:.45rem .7rem;border-radius:999px;
+    border:1px solid transparent;transition:.2s;
+  }
+  nav.bar-nav a:hover{color:var(--ink);border-color:var(--line);background:var(--bg-2)}
+
+  @media (max-width:640px){
+    .bar .wrap{gap:.75rem}
+    .brand{font-size:.6rem;letter-spacing:.14em}
+    nav.bar-nav{gap:.1rem}
+    nav.bar-nav a{font-size:.6rem;letter-spacing:.08em;padding:.4rem .45rem}
+  }
+  @media (max-width:400px){
+    .brand{display:none}
+    nav.bar-nav{margin-left:0;justify-content:space-between;width:100%}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:clamp(4rem,11vw,8.5rem) 0 clamp(3rem,7vw,5rem);overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:-30% -10% auto;height:120%;
+    background:
+      radial-gradient(60% 55% at 22% 18%, rgba(232,16,45,.20), transparent 68%),
+      radial-gradient(55% 50% at 78% 30%, rgba(255,122,26,.15), transparent 70%),
+      radial-gradient(50% 50% at 50% 88%, rgba(143,182,216,.13), transparent 72%);
+    filter:blur(10px);pointer-events:none;
+  }
+  .hero .wrap{position:relative}
+  .eyebrow{
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 1.4rem;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(2.6rem,8.5vw,6rem);line-height:1.02;letter-spacing:-.02em;
+    margin:0 0 1.5rem;max-width:16ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--ferrari)}
+  .lede{font-size:clamp(1.02rem,2vw,1.25rem);color:var(--ink-2);max-width:62ch;margin:0}
+  .lede strong{color:var(--ink);font-weight:600}
+
+  .hero-index{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;margin-top:clamp(2.5rem,6vw,4rem);
+  }
+  .hero-index a{
+    background:var(--bg-2);padding:1.4rem 1.3rem;text-decoration:none;
+    display:block;transition:.25s;position:relative;
+  }
+  .hero-index a:hover{background:var(--panel)}
+  .hero-index .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--ink-3)}
+  .hero-index .t{font-family:var(--serif);font-size:1.5rem;margin:.35rem 0 .1rem;line-height:1.15}
+  .hero-index .s{font-size:.82rem;color:var(--ink-3)}
+  .hero-index a::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--c);transition:width .3s}
+  .hero-index a:hover::after{width:100%}
+
+  /* ---------- car section ---------- */
+  .car{padding:clamp(4rem,9vw,7rem) 0;border-top:1px solid var(--line);position:relative}
+  .car-head{display:flex;align-items:flex-start;gap:clamp(1rem,3vw,2.2rem);margin-bottom:2.2rem}
+  .rank{
+    font-family:var(--serif);font-size:clamp(3.6rem,10vw,7rem);line-height:.8;
+    color:transparent;-webkit-text-stroke:1.5px var(--accent);flex:none;opacity:.85;
+  }
+  .car-title h2{
+    font-family:var(--serif);font-weight:400;letter-spacing:-.015em;
+    font-size:clamp(2rem,5.5vw,3.6rem);line-height:1.05;margin:.1rem 0 .5rem;
+  }
+  .kicker{
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--accent);margin:0;
+  }
+  .years{font-family:var(--mono);font-size:.84rem;color:var(--ink-3);margin:0}
+
+  .stage{
+    position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 50% 8%, rgba(255,255,255,.05), transparent 60%),
+      linear-gradient(180deg,var(--panel),var(--bg-2));
+    padding:clamp(1rem,4vw,2.6rem) clamp(.5rem,3vw,2rem) clamp(1.4rem,4vw,2.4rem);
+  }
+  .stage::after{
+    content:attr(data-caption);
+    position:absolute;left:clamp(1rem,3vw,2rem);bottom:.85rem;
+    font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  }
+  .stage svg{width:100%;height:auto}
+
+  .grid{display:grid;gap:clamp(1.6rem,4vw,2.6rem);margin-top:clamp(1.8rem,4vw,2.8rem)}
+  @media(min-width:900px){.grid.two{grid-template-columns:1.15fr .85fr;align-items:start}}
+
+  .prose p{margin:0 0 1.05rem;color:var(--ink-2)}
+  .prose p:last-child{margin-bottom:0}
+  .prose strong{color:var(--ink);font-weight:600}
+  .prose .drop::first-letter{
+    font-family:var(--serif);float:left;font-size:3.5rem;line-height:.82;
+    padding:.32rem .55rem 0 0;color:var(--accent);
+  }
+
+  .specs{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg-2)}
+  .specs h3{
+    margin:0;padding:.85rem 1.1rem;font-family:var(--mono);font-size:.66rem;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);
+    border-bottom:1px solid var(--line);background:var(--panel);font-weight:500;
+  }
+  .specs dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:0}
+  .specs dt,.specs dd{padding:.62rem 1.1rem;border-bottom:1px solid rgba(35,40,51,.6);margin:0;font-size:.87rem}
+  .specs dt{color:var(--ink-3)}
+  .specs dd{text-align:right;font-family:var(--mono);font-size:.82rem;color:var(--ink)}
+  .specs dl>:nth-last-child(-n+2){border-bottom:0}
+
+  /* ---------- video ---------- */
+  .video-block{margin-top:clamp(1.8rem,4vw,2.8rem)}
+  .section-label{
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 .9rem;display:flex;align-items:center;gap:.7rem;
+  }
+  .section-label::after{content:"";height:1px;flex:1;background:var(--line)}
+  .frame{
+    position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;
+    border:1px solid var(--line);background:#000;
+  }
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+  .vid-links a{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink-2);
+    text-decoration:none;border:1px solid var(--line);border-radius:999px;
+    padding:.42rem .8rem;transition:.2s;background:var(--bg-2);
+  }
+  .vid-links a:hover{color:var(--ink);border-color:var(--accent);background:var(--panel)}
+  .vid-links a::before{content:"▶ ";color:var(--accent);font-size:.6rem}
+
+  /* ---------- detail gallery ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:1.1rem}
+  .tile{
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg-2);
+    transition:.25s;
+  }
+  .tile:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .tile svg{width:100%;height:auto;display:block;background:linear-gradient(160deg,var(--panel),#0a0c11)}
+  .tile figcaption{
+    padding:.7rem .9rem;font-size:.78rem;color:var(--ink-3);border-top:1px solid var(--line);
+  }
+  .tile figcaption b{display:block;color:var(--ink);font-size:.86rem;font-weight:600;margin-bottom:.1rem}
+
+  /* ---------- pull quote ---------- */
+  .quote{
+    margin:clamp(1.8rem,4vw,2.6rem) 0 0;padding:1.4rem 0 1.4rem 1.6rem;
+    border-left:2px solid var(--accent);
+    font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.4;color:var(--ink);
+  }
+  .quote span{display:block;margin-top:.7rem;font-family:var(--mono);font-size:.68rem;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* ---------- comparison ---------- */
+  .compare{padding:clamp(4rem,9vw,7rem) 0;border-top:1px solid var(--line)}
+  .compare h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,5vw,3rem);margin:0 0 .6rem}
+  .compare p.sub{color:var(--ink-2);margin:0 0 2rem;max-width:60ch}
+  .scroller{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--bg-2)}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+  th,td{padding:.85rem 1.1rem;text-align:left;border-bottom:1px solid rgba(35,40,51,.7)}
+  thead th{
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;background:var(--panel);white-space:nowrap;
+  }
+  tbody th{font-weight:500;color:var(--ink-3);font-size:.82rem;white-space:nowrap}
+  td{font-family:var(--mono);font-size:.82rem;color:var(--ink)}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+  td.c1{color:var(--ferrari)}td.c2{color:var(--mclaren)}td.c3{color:var(--porsche)}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:3rem 0 4rem;background:var(--bg-2)}
+  footer h3{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 .9rem;font-weight:500}
+  .foot-grid{display:grid;gap:2rem}
+  @media(min-width:760px){.foot-grid{grid-template-columns:1.3fr 1fr}}
+  footer ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  footer li a{color:var(--ink-2);text-decoration:none;font-size:.86rem;border-bottom:1px solid transparent}
+  footer li a:hover{color:var(--ink);border-bottom-color:var(--ink-3)}
+  .colophon{color:var(--ink-3);font-size:.84rem;margin:0 0 .8rem;max-width:52ch}
+  .fineprint{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line);
+    color:var(--ink-3);font-size:.76rem;max-width:78ch}
+
+  /* ---------- motion ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .wheel-spin{transform-box:fill-box;transform-origin:center}
+  .stage:hover .wheel-spin{animation:spin 1.6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .stage:hover .wheel-spin{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">The <b>Three</b> Greatest</a>
+    <nav class="bar-nav">
+      <a href="#gto">250 GTO</a>
+      <a href="#f1">McLaren F1</a>
+      <a href="#p911">911</a>
+      <a href="#compare">Compare</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">An argument in three cars</p>
+    <h1>The three greatest cars in the <em>world</em>.</h1>
+    <p class="lede">
+      Thousands of cars have been fast. A handful have been beautiful. Only a very few
+      changed what people believed a car could be. These three did — one on the racetrack,
+      one on the spec sheet, and one by simply <strong>refusing to go away for sixty years</strong>.
+    </p>
+
+    <div class="hero-index">
+      <a href="#gto" style="--c:var(--ferrari)">
+        <div class="n">No. 01</div>
+        <div class="t">Ferrari 250 GTO</div>
+        <div class="s">1962–1964 · The masterpiece</div>
+      </a>
+      <a href="#f1" style="--c:var(--mclaren)">
+        <div class="n">No. 02</div>
+        <div class="t">McLaren F1</div>
+        <div class="s">1992–1998 · The obsession</div>
+      </a>
+      <a href="#p911" style="--c:var(--porsche)">
+        <div class="n">No. 03</div>
+        <div class="t">Porsche 911</div>
+        <div class="s">1963–today · The survivor</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 01 — FERRARI 250 GTO ============================ -->
+<section class="car" id="gto" style="--accent:var(--ferrari)">
+  <div class="wrap">
+
+    <div class="car-head reveal">
+      <div class="rank">01</div>
+      <div class="car-title">
+        <p class="kicker">Maranello, Italy</p>
+        <h2>Ferrari 250 GTO</h2>
+        <p class="years">1962 – 1964 · 36 built · 3.0-litre Colombo V12</p>
+      </div>
+    </div>
+
+    <div class="stage reveal" data-caption="Ferrari 250 GTO — original illustration, side elevation">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Side profile illustration of a red Ferrari 250 GTO">
+        <defs>
+          <linearGradient id="gtoBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff3350"/>
+            <stop offset=".42" stop-color="#d80e28"/>
+            <stop offset="1" stop-color="#78060f"/>
+          </linearGradient>
+          <linearGradient id="gtoGlass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#cfe4f2" stop-opacity=".85"/>
+            <stop offset="1" stop-color="#33505f" stop-opacity=".7"/>
+          </linearGradient>
+          <linearGradient id="tyre" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#31343b"/><stop offset="1" stop-color="#131519"/>
+          </linearGradient>
+          <radialGradient id="rim" cx=".4" cy=".33" r=".8">
+            <stop offset="0" stop-color="#f4f6f8"/><stop offset=".6" stop-color="#aab1bb"/><stop offset="1" stop-color="#666d78"/>
+          </radialGradient>
+          <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+            <stop offset=".45" stop-color="#fff" stop-opacity=".5"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="floor" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#000" stop-opacity=".65"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="clipGto"><path d="M 84 300 C 78 268 90 246 116 234 C 152 214 200 192 244 182 C 268 177 296 179 316 186 L 388 174 L 416 167 C 430 145 454 128 484 120 L 568 118 C 640 126 720 142 800 158 C 848 168 884 176 902 182 C 916 187 922 196 922 208 L 922 300 C 918 318 896 327 823 327 C 823 182 673 182 673 327 L 351 327 C 351 182 201 182 201 327 C 130 327 92 318 84 300 Z"/></clipPath>
+          <clipPath id="glassGto"><path d="M 420 178 C 434 150 456 130 484 120 L 568 118 C 616 126 664 136 710 145 Z"/></clipPath>
+        </defs>
+
+        <ellipse cx="503" cy="362" rx="424" ry="24" fill="url(#floor)"/>
+
+        <!-- 4325 mm long, 2400 mm wheelbase, 1210 mm tall, drawn to scale -->
+        <path fill="url(#gtoBody)" d="M 84 300 C 78 268 90 246 116 234 C 152 214 200 192 244 182 C 268 177 296 179 316 186 L 388 174 L 416 167 C 430 145 454 128 484 120 L 568 118 C 640 126 720 142 800 158 C 848 168 884 176 902 182 C 916 187 922 196 922 208 L 922 300 C 918 318 896 327 823 327 C 823 182 673 182 673 327 L 351 327 C 351 182 201 182 201 327 C 130 327 92 318 84 300 Z"/>
+
+        <!-- every detail is clipped to the bodywork so nothing floats free -->
+        <g clip-path="url(#clipGto)">
+          <path fill="#000" opacity=".24" d="M 84 288 L 928 288 L 928 340 L 84 340 Z"/>
+          <path fill="none" stroke="#ff8b9b" stroke-opacity=".38" stroke-width="2" d="M 118 262 C 260 244 440 238 680 250 L 906 262"/>
+          <path fill="url(#shine)" opacity=".5" d="M 126 226 C 200 196 290 178 400 170 L 406 180 C 296 190 206 208 136 240 Z"/>
+
+          <path fill="url(#gtoGlass)" d="M 420 178 C 434 150 456 130 484 120 L 568 118 C 616 126 664 136 710 145 Z"/>
+          <g clip-path="url(#glassGto)">
+            <path stroke="#8f0a18" stroke-width="8" d="M 580 110 L 588 182"/>
+            <path fill="#fff" opacity=".24" d="M 432 176 C 446 148 468 128 494 118 L 524 116 L 452 180 Z"/>
+          </g>
+          <path fill="none" stroke="#0d0f13" stroke-opacity=".5" stroke-width="2.5" d="M 420 178 C 434 150 456 130 484 120 L 568 118 C 616 126 664 136 710 145"/>
+
+          <path fill="none" stroke="#80101f" stroke-width="2" d="M 420 178 C 408 212 404 262 408 322"/>
+          <path fill="none" stroke="#80101f" stroke-width="2" d="M 596 160 C 616 210 622 266 622 324"/>
+
+          <!-- nose intake -->
+          <path fill="#15171c" d="M 78 300 C 74 268 88 246 114 236 L 150 230 C 120 250 104 276 102 306 Z"/>
+          <g stroke="#4a4f58" stroke-width="1.6" opacity=".85">
+            <path d="M 88 292 L 130 246"/><path d="M 93 300 L 136 253"/>
+          </g>
+          <!-- headlight faired under perspex -->
+          <g transform="rotate(-19 178 212)">
+            <ellipse cx="178" cy="212" rx="31" ry="17" fill="#f6f2e2" opacity=".92"/>
+            <ellipse cx="178" cy="212" rx="31" ry="17" fill="none" stroke="#8f0a18" stroke-width="2.5"/>
+            <ellipse cx="169" cy="207" rx="10" ry="5.5" fill="#fff" opacity=".85"/>
+          </g>
+          <path fill="#15171c" opacity=".75" d="M 268 184 L 356 176 L 358 185 L 270 193 Z"/>
+          <!-- three hand-cut louvres behind the front arch -->
+          <g fill="#15171c" opacity=".85">
+            <path d="M 372 204 l 48 -5 l 3 10 l -48 5 z"/>
+            <path d="M 376 222 l 48 -5 l 3 10 l -48 5 z"/>
+            <path d="M 380 240 l 48 -5 l 3 10 l -48 5 z"/>
+          </g>
+          <path fill="#15171c" opacity=".85" d="M 730 166 l 46 8 l -2 10 l -46 -8 z"/>
+          <!-- Kamm tail: spoiler lip over the flat chop -->
+          <path fill="#a80c1c" opacity=".95" d="M 866 172 L 930 190 L 930 206 L 862 188 Z"/>
+          <path fill="#000" opacity=".2" d="M 898 184 L 934 194 L 934 336 L 898 336 Z"/>
+          <ellipse cx="902" cy="246" rx="11" ry="8" fill="#ffcf5a"/>
+          <rect x="846" y="316" width="38" height="10" rx="5" fill="#2a2e35"/>
+
+          <circle cx="502" cy="248" r="31" fill="#f4f1e6" stroke="#8f0a18" stroke-width="2.5"/>
+          <text x="502" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="31" fill="#15171c">19</text>
+        </g>
+
+        <!-- Borrani wire wheels -->
+        <g>
+          <circle cx="276" cy="293" r="63" fill="url(#tyre)"/>
+          <circle cx="276" cy="293" r="40" fill="url(#rim)"/>
+          <g class="wheel-spin" stroke="#7c828d" stroke-width="2">
+            <path d="M276 255 v76 M238 293 h76 M249 266 l54 54 M303 266 l-54 54"/>
+            <path d="M257 259 l38 68 M295 259 l-38 68 M242 312 l68 -38 M242 274 l68 38"/>
+          </g>
+          <circle cx="276" cy="293" r="10" fill="#d8dde4" stroke="#5c626c" stroke-width="2"/>
+        </g>
+        <g>
+          <circle cx="748" cy="293" r="63" fill="url(#tyre)"/>
+          <circle cx="748" cy="293" r="40" fill="url(#rim)"/>
+          <g class="wheel-spin" stroke="#7c828d" stroke-width="2">
+            <path d="M748 255 v76 M710 293 h76 M721 266 l54 54 M775 266 l-54 54"/>
+            <path d="M729 259 l38 68 M767 259 l-38 68 M714 312 l68 -38 M714 274 l68 38"/>
+          </g>
+          <circle cx="748" cy="293" r="10" fill="#d8dde4" stroke="#5c626c" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid two">
+      <div class="prose reveal">
+        <p class="drop">Ferrari built thirty-six of them, and then the world spent sixty years
+        deciding they were the finest cars ever made. The 250 GTO was never intended as a monument.
+        It was a homologation special — a racing car built in just enough numbers to be allowed
+        to race, wearing a body that Ferrari's aerodynamicists had shaped by trial, error and
+        instinct rather than by any wind tunnel.</p>
+
+        <p>What emerged was a car with no wasted line. The nose is low and predatory, the headlights
+        buried under perspex, the tail chopped flat in the then-radical Kamm style because the airflow
+        did not care about beauty and got it anyway. Behind the front wheels sit three small louvres,
+        cut by hand, positioned by eye. Every one of the thirty-six cars is subtly different from the others.</p>
+
+        <p>Underneath is the reason it matters: the <strong>3.0-litre Colombo V12</strong>, six twin-choke
+        Weber carburettors, around 300 horsepower in a car weighing barely 880 kilograms. It won the
+        International Championship for GT Manufacturers three years running, from 1962 to 1964, and it
+        was quick at Le Mans, at the Targa Florio, and at the Tour de France Automobile.</p>
+
+        <p>It is now the most valuable car on earth. A 250 GTO reportedly changed hands privately for
+        around <strong>$70 million</strong>, and the public auction record — set in 2018 — stands above
+        <strong>$48 million</strong>. But price is the least interesting thing about it. The 250 GTO is
+        the moment when racing engineering and sculpture stopped being separate disciplines.</p>
+      </div>
+
+      <aside class="specs reveal">
+        <h3>Specification</h3>
+        <dl>
+          <dt>Engine</dt><dd>3.0 L V12</dd>
+          <dt>Induction</dt><dd>6 × Weber 38 DCN</dd>
+          <dt>Power</dt><dd>≈ 300 hp @ 7 500</dd>
+          <dt>Gearbox</dt><dd>5-speed manual</dd>
+          <dt>Weight</dt><dd>≈ 880 kg</dd>
+          <dt>0–60 mph</dt><dd>≈ 6.1 s</dd>
+          <dt>Top speed</dt><dd>≈ 280 km/h</dd>
+          <dt>Built</dt><dd>36</dd>
+          <dt>Value today</dt><dd>$50–70 M</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="video-block reveal">
+      <p class="section-label">Watch &amp; listen</p>
+      <div class="frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/4-GbLIw3BOM"
+                title="1964 Ferrari 250 GTO — Pure Sound (Petrolicious)"
+                loading="lazy" allowfullscreen
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="vid-links">
+        <a href="https://www.youtube.com/watch?v=_CyZ8jrjKGg" target="_blank" rel="noopener">V12 running in London</a>
+        <a href="https://www.youtube.com/watch?v=S2py8sjOr-A" target="_blank" rel="noopener">Chassis 3527 walkaround</a>
+        <a href="https://www.youtube.com/watch?v=wkSA4qxCCyk" target="_blank" rel="noopener">Pure sound compilation</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label" style="margin-top:2.2rem">Details</p>
+      <div class="gallery">
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Illustration of a Borrani wire wheel">
+            <rect width="400" height="260" fill="none"/>
+            <circle cx="200" cy="130" r="96" fill="#1a1d23"/>
+            <circle cx="200" cy="130" r="72" fill="#c3c9d1"/>
+            <circle cx="200" cy="130" r="66" fill="#0f1116"/>
+            <g stroke="#d7dce3" stroke-width="2.4" opacity=".95">
+              <path d="M200 66v128M136 130h128M154 84l92 92M246 84l-92 92"/>
+              <path d="M168 71l64 118M232 71l-64 118M141 162l118-64M141 98l118 64"/>
+            </g>
+            <circle cx="200" cy="130" r="22" fill="#e6eaef" stroke="#8d949e" stroke-width="3"/>
+            <circle cx="200" cy="130" r="8" fill="#e8102d"/>
+            <path d="M182 112l14-6 6 14z" fill="#8d949e"/>
+          </svg>
+          <figcaption><b>Borrani wire wheels</b>Knock-off hubs, spun steel spokes</figcaption>
+        </figure>
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Illustration of a Veglia tachometer reading 7500 rpm">
+            <circle cx="200" cy="130" r="98" fill="#0d0f13" stroke="#2a2e35" stroke-width="6"/>
+            <circle cx="200" cy="130" r="84" fill="#111419"/>
+            <g stroke="#e8e2cf" stroke-width="3" stroke-linecap="round">
+              <path d="M130 190l-10 10M118 130h-14M130 70l-10-10M200 46V32M270 70l10-10M282 130h14M270 190l10 10"/>
+            </g>
+            <path d="M200 130 L262 78" stroke="#e8102d" stroke-width="6" stroke-linecap="round"/>
+            <path d="M282 130a82 82 0 0 1-24 58l14 14a102 102 0 0 0 30-72z" fill="#e8102d" opacity=".55"/>
+            <circle cx="200" cy="130" r="10" fill="#e8e2cf"/>
+            <text x="200" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#8d949e">RPM ×1000</text>
+          </svg>
+          <figcaption><b>7 500 rpm</b>Veglia dial, red-line at the top of the arc</figcaption>
+        </figure>
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Illustration of a V12 engine with twelve intake trumpets">
+            <rect x="46" y="120" width="308" height="92" rx="12" fill="#1b1f26" stroke="#2e333c" stroke-width="3"/>
+            <g fill="#c9ced6">
+              <rect x="64" y="86" width="20" height="40" rx="6"/><rect x="88" y="86" width="20" height="40" rx="6"/>
+              <rect x="112" y="86" width="20" height="40" rx="6"/><rect x="136" y="86" width="20" height="40" rx="6"/>
+              <rect x="160" y="86" width="20" height="40" rx="6"/><rect x="184" y="86" width="20" height="40" rx="6"/>
+              <rect x="208" y="86" width="20" height="40" rx="6"/><rect x="232" y="86" width="20" height="40" rx="6"/>
+              <rect x="256" y="86" width="20" height="40" rx="6"/><rect x="280" y="86" width="20" height="40" rx="6"/>
+              <rect x="304" y="86" width="20" height="40" rx="6"/><rect x="328" y="86" width="20" height="40" rx="6"/>
+            </g>
+            <g fill="#0d0f13">
+              <ellipse cx="74" cy="88" rx="10" ry="4"/><ellipse cx="98" cy="88" rx="10" ry="4"/>
+              <ellipse cx="122" cy="88" rx="10" ry="4"/><ellipse cx="146" cy="88" rx="10" ry="4"/>
+              <ellipse cx="170" cy="88" rx="10" ry="4"/><ellipse cx="194" cy="88" rx="10" ry="4"/>
+              <ellipse cx="218" cy="88" rx="10" ry="4"/><ellipse cx="242" cy="88" rx="10" ry="4"/>
+              <ellipse cx="266" cy="88" rx="10" ry="4"/><ellipse cx="290" cy="88" rx="10" ry="4"/>
+              <ellipse cx="314" cy="88" rx="10" ry="4"/><ellipse cx="338" cy="88" rx="10" ry="4"/>
+            </g>
+            <rect x="46" y="150" width="308" height="8" fill="#e8102d" opacity=".8"/>
+            <text x="200" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#8d949e">V12 · 2 953 cc</text>
+          </svg>
+          <figcaption><b>Six twin-choke Webers</b>Twelve trumpets, one Colombo V12</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <blockquote class="quote reveal">
+      Thirty-six cars, three consecutive world championships, and not one straight line on the whole body.
+      <span>Why it is No. 1</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================ 02 — McLAREN F1 ============================ -->
+<section class="car" id="f1" style="--accent:var(--mclaren)">
+  <div class="wrap">
+
+    <div class="car-head reveal">
+      <div class="rank">02</div>
+      <div class="car-title">
+        <p class="kicker">Woking, England</p>
+        <h2>McLaren F1</h2>
+        <p class="years">1992 – 1998 · 106 built · 6.1-litre BMW V12</p>
+      </div>
+    </div>
+
+    <div class="stage reveal" data-caption="McLaren F1 — original illustration, side elevation">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Side profile illustration of an orange McLaren F1">
+        <defs>
+          <linearGradient id="f1Body" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffb054"/>
+            <stop offset=".4" stop-color="#ff7a1a"/>
+            <stop offset="1" stop-color="#8a3600"/>
+          </linearGradient>
+          <linearGradient id="f1Glass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#dceaf4" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#2c4350" stop-opacity=".75"/>
+          </linearGradient>
+          <radialGradient id="rimDark" cx=".4" cy=".33" r=".8">
+            <stop offset="0" stop-color="#d9dee5"/><stop offset=".6" stop-color="#8b929c"/><stop offset="1" stop-color="#4a505a"/>
+          </radialGradient>
+          <clipPath id="clipF1"><path d="M 66 306 C 60 280 72 260 96 250 C 140 232 190 214 236 202 C 262 195 288 192 310 192 L 342 188 C 358 166 384 146 412 135 C 440 125 466 122 492 126 C 556 138 626 150 700 158 C 776 166 848 172 892 176 C 910 179 918 188 918 200 L 918 302 C 914 322 896 332 852 332 C 852 180 704 180 704 332 L 314 332 C 314 180 164 180 164 332 C 112 332 74 322 66 306 Z"/></clipPath>
+          <clipPath id="glassF1"><path d="M 344 188 C 360 166 384 146 412 135 C 440 125 466 122 492 126 C 542 134 592 143 640 151 Z"/></clipPath>
+        </defs>
+
+        <ellipse cx="496" cy="362" rx="430" ry="24" fill="url(#floor)"/>
+
+        <!-- 4287 mm long, 2718 mm wheelbase, 1140 mm tall — cabin far forward, mid-engine -->
+        <path fill="url(#f1Body)" d="M 66 306 C 60 280 72 260 96 250 C 140 232 190 214 236 202 C 262 195 288 192 310 192 L 342 188 C 358 166 384 146 412 135 C 440 125 466 122 492 126 C 556 138 626 150 700 158 C 776 166 848 172 892 176 C 910 179 918 188 918 200 L 918 302 C 914 322 896 332 852 332 C 852 180 704 180 704 332 L 314 332 C 314 180 164 180 164 332 C 112 332 74 322 66 306 Z"/>
+
+        <g clip-path="url(#clipF1)">
+          <path fill="#000" opacity=".24" d="M 66 294 L 928 294 L 928 344 L 66 344 Z"/>
+          <path fill="url(#shine)" opacity=".42" d="M 104 246 C 190 216 270 198 336 190 L 342 200 C 274 210 196 228 114 260 Z"/>
+
+          <path fill="url(#f1Glass)" d="M 344 188 C 360 166 384 146 412 135 C 440 125 466 122 492 126 C 542 134 592 143 640 151 Z"/>
+          <g clip-path="url(#glassF1)">
+            <path fill="#fff" opacity=".22" d="M 356 184 C 372 164 394 147 418 136 L 446 130 L 380 187 Z"/>
+            <path stroke="#a04300" stroke-width="7" d="M 496 118 L 506 192"/>
+          </g>
+          <path fill="none" stroke="#0d0f13" stroke-opacity=".5" stroke-width="2.5" d="M 344 188 C 360 166 384 146 412 135 C 440 125 466 122 492 126 C 542 134 592 143 640 151"/>
+
+          <!-- dihedral door cut -->
+          <path fill="none" stroke="#a04300" stroke-width="2.5" d="M 340 190 C 326 222 322 272 328 336"/>
+          <path fill="none" stroke="#a04300" stroke-width="2.5" d="M 600 152 C 616 200 622 272 622 336"/>
+          <path fill="none" stroke="#a04300" stroke-width="2.5" d="M 340 190 C 430 172 522 158 600 152"/>
+
+          <g transform="rotate(-14 172 226)">
+            <path fill="#f6f2e2" opacity=".92" d="M 132 220 l 74 -8 q 10 1 10 10 l 0 8 q 0 9 -10 9 l -74 -8 z"/>
+            <path fill="none" stroke="#a04300" stroke-width="2" d="M 132 220 l 74 -8 q 10 1 10 10 l 0 8 q 0 9 -10 9 l -74 -8 z"/>
+          </g>
+          <path fill="#15171c" d="M 60 300 C 100 320 140 328 180 330 L 180 340 L 60 340 Z"/>
+          <!-- the F1's big engine-feed side scoop, just ahead of the rear wheel -->
+          <path fill="#15171c" d="M 650 198 L 718 208 L 714 240 C 688 230 664 216 648 202 Z"/>
+          <!-- engine cover louvres -->
+          <g fill="#15171c" opacity=".8">
+            <path d="M 762 180 l 70 8 l -2 11 l -70 -8 z"/>
+            <path d="M 760 200 l 70 8 l -2 11 l -70 -8 z"/>
+          </g>
+          <!-- rear deck lip over the chopped tail -->
+          <path fill="#a04300" opacity=".95" d="M 862 166 L 930 184 L 930 200 L 858 182 Z"/>
+          <path fill="#000" opacity=".2" d="M 896 178 L 934 190 L 934 340 L 896 340 Z"/>
+          <ellipse cx="898" cy="244" rx="12" ry="8" fill="#ff4d3d"/>
+          <circle cx="858" cy="322" r="10" fill="#2a2e35"/>
+
+          <g>
+            <rect x="398" y="238" width="140" height="38" rx="19" fill="#0d0f13" opacity=".72"/>
+            <text x="468" y="264" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" fill="#ffb054">240.1 MPH</text>
+          </g>
+        </g>
+
+        <!-- roof-mounted engine air intake, standing proud of the cabin -->
+        <path fill="#d96b12" d="M 508 142 C 508 116 522 106 542 106 C 562 106 574 116 574 142 Z"/>
+        <path fill="#15171c" d="M 514 140 C 514 120 526 111 542 111 L 542 140 Z"/>
+
+        <g>
+          <circle cx="239" cy="294" r="62" fill="url(#tyre)"/>
+          <circle cx="239" cy="294" r="40" fill="url(#rimDark)"/>
+          <g class="wheel-spin" fill="#3d434c">
+            <path d="M239 258 l11 26 h-22 z"/><path d="M273 283 l-21 19 l-8 -21 z"/>
+            <path d="M260 322 l-27 -14 l16 -17 z"/><path d="M205 283 l28 10 l-9 22 z"/>
+            <path d="M218 323 l-13 -27 l24 4 z"/>
+          </g>
+          <circle cx="239" cy="294" r="11" fill="#e6eaef" stroke="#5c626c" stroke-width="2"/>
+        </g>
+        <g>
+          <circle cx="778" cy="294" r="66" fill="url(#tyre)"/>
+          <circle cx="778" cy="294" r="43" fill="url(#rimDark)"/>
+          <g class="wheel-spin" fill="#3d434c">
+            <path d="M778 256 l12 28 h-24 z"/><path d="M815 283 l-22 21 l-9 -23 z"/>
+            <path d="M801 325 l-29 -15 l17 -18 z"/><path d="M741 283 l30 11 l-10 23 z"/>
+            <path d="M755 326 l-14 -29 l26 4 z"/>
+          </g>
+          <circle cx="778" cy="294" r="11" fill="#e6eaef" stroke="#5c626c" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid two">
+      <div class="prose reveal">
+        <p class="drop">Gordon Murray had just spent a career designing Formula One cars when he sat down
+        in an airport lounge in Milan and sketched a road car with three seats — the driver in the middle,
+        a passenger set back on each side. Nobody had asked for it. Nobody has really done it since.
+        That sketch became the McLaren F1, and it is the closest the car industry has come to an
+        engineer being given everything he wanted and no reason to compromise.</p>
+
+        <p>The rules Murray set were absolute. No turbochargers, because he wanted throttle response.
+        No traction control, no ABS, no power steering, because they added weight and filtered the car.
+        A <strong>carbon-fibre monocoque</strong> — the first ever on a production road car. And when BMW
+        Motorsport delivered a naturally aspirated 6.1-litre V12 making 618 horsepower, Murray lined the
+        engine bay in gold foil, because gold is the best reflector of heat there is.</p>
+
+        <p>The result weighed 1 138 kilograms. In 1998 an F1 with its rev limiter raised was driven to
+        <strong>240.1 mph</strong> at Volkswagen's Ehra-Lessien proving ground, a record for a production
+        car that stood for years — and remains the record for a naturally aspirated one. Two years earlier,
+        a barely modified racing version had won the <strong>24 Hours of Le Mans outright</strong>,
+        first time out, against purpose-built prototypes.</p>
+
+        <p>Only 106 were built, of which 64 were road cars. Murray never intended the F1 to race at all.
+        It won Le Mans anyway. That is the whole story of the car in one sentence.</p>
+      </div>
+
+      <aside class="specs reveal">
+        <h3>Specification</h3>
+        <dl>
+          <dt>Engine</dt><dd>6.1 L BMW V12</dd>
+          <dt>Aspiration</dt><dd>Naturally aspirated</dd>
+          <dt>Power</dt><dd>618 hp @ 7 400</dd>
+          <dt>Gearbox</dt><dd>6-speed manual</dd>
+          <dt>Weight</dt><dd>1 138 kg</dd>
+          <dt>0–60 mph</dt><dd>3.2 s</dd>
+          <dt>Top speed</dt><dd>386 km/h</dd>
+          <dt>Seats</dt><dd>3 (central driver)</dd>
+          <dt>Built</dt><dd>106 (64 road)</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="video-block reveal">
+      <p class="section-label">Watch &amp; listen</p>
+      <div class="frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/73LNmkL4tfg"
+                title="McLaren F1 — The Details"
+                loading="lazy" allowfullscreen
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="vid-links">
+        <a href="https://www.youtube.com/watch?v=z4TGgb7MUTA" target="_blank" rel="noopener">Chris Harris: the best sports car ever</a>
+        <a href="https://www.youtube.com/watch?v=k_rlfT84-Ws" target="_blank" rel="noopener">Flat out at Goodwood</a>
+        <a href="https://www.youtube.com/watch?v=sns7aFNI0aI" target="_blank" rel="noopener">Inside McLaren Special Operations</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label" style="margin-top:2.2rem">Details</p>
+      <div class="gallery">
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Diagram of the three-seat central driving position">
+            <rect x="40" y="52" width="320" height="160" rx="70" fill="#12151c" stroke="#2e333c" stroke-width="3"/>
+            <g>
+              <circle cx="200" cy="118" r="34" fill="#ff7a1a"/>
+              <rect x="176" y="146" width="48" height="42" rx="14" fill="#ff7a1a"/>
+              <text x="200" y="128" text-anchor="middle" font-family="ui-monospace,monospace" font-size="24" fill="#12151c">1</text>
+            </g>
+            <g fill="#59616d">
+              <circle cx="112" cy="146" r="27"/><rect x="92" y="168" width="40" height="34" rx="12"/>
+              <circle cx="288" cy="146" r="27"/><rect x="268" y="168" width="40" height="34" rx="12"/>
+            </g>
+            <circle cx="200" cy="76" r="16" fill="none" stroke="#c9ced6" stroke-width="4"/>
+            <text x="200" y="240" text-anchor="middle" font-family="ui-monospace,monospace" font-size="18" fill="#8d949e">DRIVER CENTRAL</text>
+          </svg>
+          <figcaption><b>Three seats</b>Driver in the middle, passengers set back</figcaption>
+        </figure>
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Illustration of the gold-foil-lined engine bay">
+            <defs>
+              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#e0a838"/><stop offset="1" stop-color="#8a6210"/>
+              </linearGradient>
+            </defs>
+            <path d="M40 200 L60 70 L340 70 L360 200 Z" fill="url(#gold)"/>
+            <g stroke="#8a6210" stroke-width="2" opacity=".7">
+              <path d="M96 70l-18 130M152 70l-10 130M208 70v130M264 70l10 130M320 70l18 130"/>
+            </g>
+            <rect x="130" y="104" width="140" height="70" rx="10" fill="#1b1f26" stroke="#2e333c" stroke-width="3"/>
+            <g fill="#c9ced6">
+              <rect x="146" y="84" width="14" height="26" rx="5"/><rect x="170" y="84" width="14" height="26" rx="5"/>
+              <rect x="194" y="84" width="14" height="26" rx="5"/><rect x="218" y="84" width="14" height="26" rx="5"/>
+              <rect x="242" y="84" width="14" height="26" rx="5"/>
+            </g>
+            <text x="200" y="150" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" fill="#ff7a1a">V12</text>
+            <text x="200" y="234" text-anchor="middle" font-family="ui-monospace,monospace" font-size="17" fill="#8d949e">24-CARAT HEAT SHIELD</text>
+          </svg>
+          <figcaption><b>Gold-lined engine bay</b>The best heat reflector money can buy</figcaption>
+        </figure>
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Chart of the 240.1 mph top speed record">
+            <text x="200" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="62" fill="#ff7a1a">240.1</text>
+            <text x="200" y="126" text-anchor="middle" font-family="ui-monospace,monospace" font-size="19" fill="#8d949e">MPH · 386.4 KM/H</text>
+            <g>
+              <rect x="46" y="156" width="308" height="12" rx="6" fill="#1b1f26"/>
+              <rect x="46" y="156" width="308" height="12" rx="6" fill="#ff7a1a"/>
+              <rect x="46" y="186" width="308" height="12" rx="6" fill="#1b1f26"/>
+              <rect x="46" y="186" width="196" height="12" rx="6" fill="#59616d"/>
+            </g>
+            <text x="46" y="150" font-family="ui-monospace,monospace" font-size="15" fill="#c9ced6">McLAREN F1 · 1998</text>
+            <text x="46" y="180" font-family="ui-monospace,monospace" font-size="15" fill="#8d949e">TYPICAL 1998 SUPERCAR</text>
+            <text x="200" y="232" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#8d949e">EHRA-LESSIEN, GERMANY</text>
+          </svg>
+          <figcaption><b>240.1 mph</b>Still the naturally aspirated record</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <blockquote class="quote reveal">
+      It was never meant to be a racing car. It won Le Mans outright the first time it turned up.
+      <span>Why it is No. 2</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================ 03 — PORSCHE 911 ============================ -->
+<section class="car" id="p911" style="--accent:var(--porsche)">
+  <div class="wrap">
+
+    <div class="car-head reveal">
+      <div class="rank">03</div>
+      <div class="car-title">
+        <p class="kicker">Stuttgart-Zuffenhausen, Germany</p>
+        <h2>Porsche 911</h2>
+        <p class="years">1963 – today · 1 000 000+ built · rear-mounted flat-six</p>
+      </div>
+    </div>
+
+    <div class="stage reveal" data-caption="Porsche 911 — original illustration, side elevation">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Side profile illustration of a silver-blue Porsche 911">
+        <defs>
+          <linearGradient id="p9Body" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e8f0f7"/>
+            <stop offset=".45" stop-color="#a9c2d8"/>
+            <stop offset="1" stop-color="#495e70"/>
+          </linearGradient>
+          <linearGradient id="p9Glass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#dfeaf3" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#2b3d49" stop-opacity=".75"/>
+          </linearGradient>
+          <clipPath id="clipP9"><path d="M 88 296 C 82 268 92 248 116 238 C 148 224 184 210 216 202 C 240 196 266 197 286 203 L 340 195 L 380 188 C 402 156 434 122 476 104 C 502 96 530 95 554 100 C 578 108 596 122 610 140 C 658 152 714 162 770 170 C 830 176 878 182 898 188 C 910 192 914 200 914 212 L 914 300 C 910 318 888 328 802 328 C 802 176 648 176 648 328 L 335 328 C 335 176 185 176 185 328 C 128 328 96 314 88 296 Z"/></clipPath>
+          <clipPath id="glassP9"><path d="M 386 186 C 402 158 432 124 470 106 C 496 95 526 93 550 98 C 574 104 592 118 604 134 Z"/></clipPath>
+        </defs>
+
+        <ellipse cx="500" cy="360" rx="418" ry="24" fill="url(#floor)"/>
+
+        <!-- 4147 mm long, 2271 mm wheelbase, 1320 mm tall — upright, unbroken flyline -->
+        <path fill="url(#p9Body)" d="M 88 296 C 82 268 92 248 116 238 C 148 224 184 210 216 202 C 240 196 266 197 286 203 L 340 195 L 380 188 C 402 156 434 122 476 104 C 502 96 530 95 554 100 C 578 108 596 122 610 140 C 658 152 714 162 770 170 C 830 176 878 182 898 188 C 910 192 914 200 914 212 L 914 300 C 910 318 888 328 802 328 C 802 176 648 176 648 328 L 335 328 C 335 176 185 176 185 328 C 128 328 96 314 88 296 Z"/>
+
+        <g clip-path="url(#clipP9)">
+          <path fill="#000" opacity=".2" d="M 88 286 L 920 286 L 920 336 L 88 336 Z"/>
+          <path fill="url(#shine)" opacity=".6" d="M 124 232 C 214 204 300 190 374 182 L 380 192 C 300 202 222 214 132 244 Z"/>
+          <path fill="none" stroke="#ffffff" stroke-opacity=".3" stroke-width="2" d="M 214 224 C 380 202 570 208 730 226 L 898 240"/>
+
+          <!-- the signature 911 flyline -->
+          <path fill="url(#p9Glass)" d="M 386 186 C 402 158 432 124 470 106 C 496 95 526 93 550 98 C 574 104 592 118 604 134 Z"/>
+          <g clip-path="url(#glassP9)">
+            <path fill="#fff" opacity=".26" d="M 398 182 C 416 154 444 126 476 108 L 504 99 L 424 184 Z"/>
+            <path stroke="#5d7386" stroke-width="8" d="M 544 86 L 556 160"/>
+            <path fill="#2b3d49" opacity=".45" d="M 556 88 C 580 100 596 116 610 138 L 556 168 Z"/>
+          </g>
+          <path fill="none" stroke="#0d0f13" stroke-opacity=".22" stroke-width="2" d="M 386 186 C 402 158 432 124 470 106 C 496 95 526 93 550 98 C 574 104 592 118 604 134"/>
+
+          <path fill="none" stroke="#5d7386" stroke-width="2" d="M 386 186 C 374 216 370 264 374 330"/>
+          <path fill="none" stroke="#5d7386" stroke-width="2" d="M 560 152 C 578 202 584 262 584 330"/>
+          <rect x="466" y="200" width="38" height="9" rx="4.5" fill="#5d7386"/>
+
+          <!-- round headlight standing proud of the fender crest -->
+          <g>
+            <ellipse cx="176" cy="212" rx="27" ry="25" fill="#f6f2e2"/>
+            <ellipse cx="176" cy="212" rx="27" ry="25" fill="none" stroke="#5d7386" stroke-width="3"/>
+            <ellipse cx="167" cy="203" rx="9" ry="8" fill="#fff"/>
+            <ellipse cx="176" cy="212" rx="12" ry="11" fill="#cfd8e0" opacity=".45"/>
+          </g>
+          <path fill="#ffb54d" d="M 98 258 l 44 -10 l 3 13 l -44 10 z"/>
+          <path fill="none" stroke="#7d92a4" stroke-width="1.8" d="M 124 244 C 190 226 258 212 322 202"/>
+
+          <!-- engine deck grille -->
+          <g fill="#2b3d49" opacity=".8">
+            <path d="M 676 158 l 92 14 l -2 11 l -92 -14 z"/>
+            <path d="M 674 178 l 92 14 l -2 11 l -92 -14 z"/>
+          </g>
+          <!-- ducktail lip over the engine deck -->
+          <path fill="#c3d6e6" opacity=".9" d="M 838 174 C 878 180 910 188 926 196 L 926 212 C 906 202 874 194 834 188 Z"/>
+          <path fill="#000" opacity=".16" d="M 894 190 L 926 200 L 926 336 L 894 336 Z"/>
+          <rect x="856" y="252" width="58" height="12" rx="6" fill="#ff4d3d"/>
+          <rect x="796" y="316" width="44" height="11" rx="5.5" fill="#2a2e35"/>
+        </g>
+
+        <!-- Fuchs wheels -->
+        <g>
+          <circle cx="260" cy="291" r="65" fill="url(#tyre)"/>
+          <circle cx="260" cy="291" r="42" fill="url(#rim)"/>
+          <g class="wheel-spin">
+            <g fill="#3d434c">
+              <path d="M260 253 l12 28 h-24 z"/><path d="M296 280 l-21 20 l-9 -22 z"/>
+              <path d="M282 322 l-28 -14 l16 -18 z"/><path d="M224 280 l29 10 l-10 22 z"/>
+              <path d="M238 323 l-14 -28 l25 4 z"/>
+            </g>
+            <circle cx="260" cy="291" r="28" fill="none" stroke="#4e545e" stroke-width="3"/>
+          </g>
+          <circle cx="260" cy="291" r="11" fill="#e6eaef" stroke="#5c626c" stroke-width="2"/>
+        </g>
+        <g>
+          <circle cx="725" cy="291" r="65" fill="url(#tyre)"/>
+          <circle cx="725" cy="291" r="42" fill="url(#rim)"/>
+          <g class="wheel-spin">
+            <g fill="#3d434c">
+              <path d="M725 253 l12 28 h-24 z"/><path d="M761 280 l-21 20 l-9 -22 z"/>
+              <path d="M747 322 l-28 -14 l16 -18 z"/><path d="M689 280 l29 10 l-10 22 z"/>
+              <path d="M703 323 l-14 -28 l25 4 z"/>
+            </g>
+            <circle cx="725" cy="291" r="28" fill="none" stroke="#4e545e" stroke-width="3"/>
+          </g>
+          <circle cx="725" cy="291" r="11" fill="#e6eaef" stroke="#5c626c" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid two">
+      <div class="prose reveal">
+        <p class="drop">Every engineering instinct says the Porsche 911 should not work. The engine hangs
+        behind the rear axle, which is the wrong place for it — a pendulum bolted to the back of the car,
+        forever trying to overtake the front. In 1963 that was an economy-car layout carried over from the
+        Volkswagen Beetle. Six decades later Porsche is still building it, and it is still the sharpest
+        thing in its class.</p>
+
+        <p>Nobody at Porsche defended the layout on paper. They simply refused to abandon it, and then
+        spent sixty years engineering around the problem: longer wheelbases, wider rear track, the
+        Weissach rear axle, then all-wheel drive, then rear-wheel steering. What began as a flaw became
+        the 911's signature — extraordinary traction out of slow corners, because all the weight sits
+        exactly where the driven wheels are.</p>
+
+        <p>The first car had a <strong>2.0-litre flat-six making 130 hp</strong>. The current 911 GT3
+        runs a naturally aspirated <strong>4.0-litre revving to 9 000 rpm</strong>. In between it won the
+        Monte Carlo Rally, the Targa Florio, the Daytona 24 Hours, and class victory at Le Mans more times
+        than any other model line. It is also, uniquely among great cars, the one you can genuinely use
+        every day — which is why more than a million have been sold.</p>
+
+        <p>The 250 GTO is the most beautiful car ever built and the McLaren F1 is the most uncompromising.
+        But the 911 is the greatest achievement of the three, because greatness that lasts
+        <strong>sixty years and eight generations</strong> is much harder than greatness that lasts one.</p>
+      </div>
+
+      <aside class="specs reveal">
+        <h3>Then &amp; now</h3>
+        <dl>
+          <dt>1964 · Engine</dt><dd>2.0 L flat-six</dd>
+          <dt>1964 · Power</dt><dd>130 hp</dd>
+          <dt>1964 · 0–60 mph</dt><dd>≈ 8.5 s</dd>
+          <dt>1964 · Top speed</dt><dd>≈ 210 km/h</dd>
+          <dt>Today · Engine</dt><dd>4.0 L flat-six</dd>
+          <dt>Today · Power</dt><dd>≈ 500 hp</dd>
+          <dt>Today · 0–60 mph</dt><dd>≈ 3.2 s</dd>
+          <dt>Today · Red-line</dt><dd>9 000 rpm</dd>
+          <dt>Total built</dt><dd>1 000 000+</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="video-block reveal">
+      <p class="section-label">Watch &amp; listen</p>
+      <div class="frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/EJZaozL1n4Y"
+                title="The Evolution of the Porsche 911 — 60 Years of History"
+                loading="lazy" allowfullscreen
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="vid-links">
+        <a href="https://www.youtube.com/watch?v=QVon7-rqdeQ" target="_blank" rel="noopener">60th anniversary history</a>
+        <a href="https://www.youtube.com/watch?v=UJNJNJbc3VE" target="_blank" rel="noopener">50 years of the 911 Turbo</a>
+        <a href="https://www.youtube.com/watch?v=b38gHIGENNw" target="_blank" rel="noopener">Every generation, animated</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label" style="margin-top:2.2rem">Details</p>
+      <div class="gallery">
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Illustration of a Fuchs alloy wheel">
+            <circle cx="200" cy="130" r="98" fill="#1a1d23"/>
+            <circle cx="200" cy="130" r="74" fill="#b9c3cd"/>
+            <g fill="#2b3138">
+              <path d="M200 62l20 42h-40z"/><path d="M262 106l-34 32l-13-38z"/>
+              <path d="M240 194l-46-24l26-29z"/><path d="M160 194l24-46l29 26z" opacity="0"/>
+              <path d="M138 106l46 20l-24 30z"/><path d="M160 196l-22-48l42 6z"/>
+            </g>
+            <circle cx="200" cy="130" r="46" fill="none" stroke="#8d949e" stroke-width="4"/>
+            <circle cx="200" cy="130" r="24" fill="#e6eaef" stroke="#8d949e" stroke-width="3"/>
+            <circle cx="200" cy="130" r="9" fill="#8fb6d8"/>
+          </svg>
+          <figcaption><b>Fuchs alloys</b>Forged in 1966, still the definitive 911 wheel</figcaption>
+        </figure>
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Illustration of a horizontally opposed six-cylinder engine">
+            <circle cx="200" cy="130" r="44" fill="#2b3138" stroke="#454c56" stroke-width="4"/>
+            <g fill="#c9ced6">
+              <rect x="58" y="88" width="86" height="26" rx="8"/><rect x="58" y="118" width="86" height="26" rx="8"/>
+              <rect x="58" y="148" width="86" height="26" rx="8"/>
+              <rect x="256" y="88" width="86" height="26" rx="8"/><rect x="256" y="118" width="86" height="26" rx="8"/>
+              <rect x="256" y="148" width="86" height="26" rx="8"/>
+            </g>
+            <g stroke="#8fb6d8" stroke-width="4" stroke-linecap="round">
+              <path d="M144 101h24M144 131h24M144 161h24M232 101h24M232 131h24M232 161h24"/>
+            </g>
+            <circle cx="200" cy="130" r="14" fill="#8fb6d8"/>
+            <text x="200" y="228" text-anchor="middle" font-family="ui-monospace,monospace" font-size="19" fill="#8d949e">FLAT-SIX · REAR-MOUNTED</text>
+          </svg>
+          <figcaption><b>Boxer six, behind the axle</b>The layout nobody else dared keep</figcaption>
+        </figure>
+        <figure class="tile">
+          <svg viewBox="0 0 400 260" role="img" aria-label="Timeline of the eight Porsche 911 generations">
+            <line x1="40" y1="130" x2="360" y2="130" stroke="#2e333c" stroke-width="4"/>
+            <g fill="#8fb6d8">
+              <circle cx="40" cy="130" r="9"/><circle cx="86" cy="130" r="7"/><circle cx="132" cy="130" r="7"/>
+              <circle cx="178" cy="130" r="7"/><circle cx="224" cy="130" r="7"/><circle cx="270" cy="130" r="7"/>
+              <circle cx="316" cy="130" r="7"/><circle cx="360" cy="130" r="11"/>
+            </g>
+            <g font-family="ui-monospace,monospace" font-size="14" fill="#8d949e" text-anchor="middle">
+              <text x="40" y="112">901</text><text x="86" y="112">930</text><text x="132" y="112">964</text>
+              <text x="178" y="112">993</text><text x="224" y="112">996</text><text x="270" y="112">997</text>
+              <text x="316" y="112">991</text><text x="360" y="112">992</text>
+            </g>
+            <text x="40" y="166" font-family="ui-monospace,monospace" font-size="15" fill="#c9ced6">1963</text>
+            <text x="360" y="166" text-anchor="end" font-family="ui-monospace,monospace" font-size="15" fill="#c9ced6">TODAY</text>
+            <text x="200" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#8fb6d8">8 generations</text>
+          </svg>
+          <figcaption><b>Eight generations</b>One silhouette, six decades of refinement</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <blockquote class="quote reveal">
+      The others were perfect once. The 911 has been getting better for sixty years.
+      <span>Why it is No. 3 — and arguably No. 1</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================ COMPARISON ============================ -->
+<section class="compare" id="compare">
+  <div class="wrap">
+    <h2>Head to head</h2>
+    <p class="sub">Three different answers to the same question. Figures are for the defining
+      version of each car — the 250 GTO as raced in 1962, the F1 in road specification, and the
+      911 in both its first and current form.</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Ferrari 250 GTO</th>
+            <th scope="col">McLaren F1</th>
+            <th scope="col">Porsche 911</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Years</th><td class="c1">1962–1964</td><td class="c2">1992–1998</td><td class="c3">1963–today</td></tr>
+          <tr><th scope="row">Layout</th><td class="c1">Front engine, RWD</td><td class="c2">Mid engine, RWD</td><td class="c3">Rear engine, RWD/AWD</td></tr>
+          <tr><th scope="row">Engine</th><td class="c1">3.0 L V12</td><td class="c2">6.1 L V12</td><td class="c3">2.0–4.0 L flat-six</td></tr>
+          <tr><th scope="row">Power</th><td class="c1">≈ 300 hp</td><td class="c2">618 hp</td><td class="c3">130 → 500+ hp</td></tr>
+          <tr><th scope="row">Weight</th><td class="c1">≈ 880 kg</td><td class="c2">1 138 kg</td><td class="c3">1 080 → 1 500 kg</td></tr>
+          <tr><th scope="row">0–60 mph</th><td class="c1">≈ 6.1 s</td><td class="c2">3.2 s</td><td class="c3">8.5 → 3.0 s</td></tr>
+          <tr><th scope="row">Top speed</th><td class="c1">≈ 280 km/h</td><td class="c2">386 km/h</td><td class="c3">210 → 330 km/h</td></tr>
+          <tr><th scope="row">Numbers built</th><td class="c1">36</td><td class="c2">106</td><td class="c3">1 000 000+</td></tr>
+          <tr><th scope="row">Greatest win</th><td class="c1">GT world title ×3</td><td class="c2">Le Mans 1995, outright</td><td class="c3">Monte Carlo, Targa, Daytona</td></tr>
+          <tr><th scope="row">Its claim</th><td class="c1">Most beautiful</td><td class="c2">Most uncompromising</td><td class="c3">Most enduring</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>About this page</h3>
+        <p class="colophon">
+          A short, opinionated case for three cars. The illustrations on this page are original
+          vector drawings made for this site — stylised side elevations rather than photographs,
+          so nothing here is borrowed from anyone else.
+        </p>
+        <p class="colophon">
+          The videos are embedded from YouTube and remain the property of their respective creators.
+        </p>
+      </div>
+      <div>
+        <h3>Watch more</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=4-GbLIw3BOM" target="_blank" rel="noopener">Ferrari 250 GTO — Pure Sound</a></li>
+          <li><a href="https://www.youtube.com/watch?v=73LNmkL4tfg" target="_blank" rel="noopener">McLaren F1 — The Details</a></li>
+          <li><a href="https://www.youtube.com/watch?v=EJZaozL1n4Y" target="_blank" rel="noopener">The Evolution of the Porsche 911</a></li>
+          <li><a href="https://commons.wikimedia.org/wiki/Category:Ferrari_250_GTO" target="_blank" rel="noopener">Photo archive: 250 GTO</a></li>
+          <li><a href="https://commons.wikimedia.org/wiki/Category:McLaren_F1" target="_blank" rel="noopener">Photo archive: McLaren F1</a></li>
+          <li><a href="https://commons.wikimedia.org/wiki/Category:Porsche_911" target="_blank" rel="noopener">Photo archive: Porsche 911</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fineprint">
+      Performance figures are period manufacturer and contemporary road-test claims and vary
+      between individual cars and sources; the 250 GTO's values in particular differ by chassis.
+      Ferrari, McLaren and Porsche are trademarks of their respective owners. This is an
+      independent enthusiast page with no affiliation to any manufacturer.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    els.forEach(function (el, i) {
+      el.style.transitionDelay = (i % 3) * 90 + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  // Tint the sticky bar to match the section in view
+  (function () {
+    var tints = { gto: '#e8102d', f1: '#ff7a1a', p911: '#8fb6d8' };
+    var brand = document.querySelector('.brand b');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.car'));
+    if (!brand || !sections.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && tints[e.target.id]) brand.style.color = tints[e.target.id];
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
+</body>
+</html>
